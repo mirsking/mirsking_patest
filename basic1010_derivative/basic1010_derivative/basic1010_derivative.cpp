@@ -8,15 +8,23 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 	int coeff, index;
-	vector<long long> result_vec;
+	vector<int> result_vec;
 	while (cin >> coeff >> index)
 	{
-		long long coeff_tmp = coeff*index;
+		int coeff_tmp = coeff*index;
 		int index_tmp = index - 1;
-		if (index_tmp+1 != 0)
+		if (index != 0)
 		{
-			result_vec.push_back(coeff_tmp);
-			result_vec.push_back(index_tmp);
+			if (coeff_tmp != 0)
+			{
+				result_vec.push_back(coeff_tmp);
+				result_vec.push_back(index_tmp);
+			}
+			else
+			{
+				result_vec.push_back(0);
+				result_vec.push_back(0);
+			}
 		}
 	}
 	for (auto iter = result_vec.begin(); iter != result_vec.end(); iter++)
@@ -25,6 +33,11 @@ int main(int argc, char* argv[])
 		if ((++iter) != result_vec.end())
 			cout << ' ';
 		iter--;
+	}
+	// only const input
+	if (result_vec.size() == 0)
+	{
+		cout << 0 << ' ' << 0 << endl;
 	}
 	return 0;
 }
