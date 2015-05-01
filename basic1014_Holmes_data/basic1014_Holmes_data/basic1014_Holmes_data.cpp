@@ -11,7 +11,7 @@ string DAY[] = {"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
 
 bool isDayChar(char& ch)
 {
-	if ('A' < ch && ch <= 'Z')
+	if ('A' <= ch && ch <= 'G')
 		return true;
 	else
 		return false;
@@ -19,7 +19,7 @@ bool isDayChar(char& ch)
 
 bool isHourChar(char& ch)
 {
-	if (('A' < ch && ch <= 'N') || ('0' < ch && ch <= '9'))
+	if (('A' <= ch && ch <= 'N') || ('0' <= ch && ch <= '9'))
 		return true;
 	else
 		return false;
@@ -27,14 +27,14 @@ bool isHourChar(char& ch)
 
 bool isMinChar(char& ch)
 {
-	if (('A' < ch && ch <= 'Z') || ('a' < ch && ch <= 'z'))
+	if (('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z'))
 		return true;
 	else
 		return false;
 }
 
 
-void getDayHour(vector<string>& str_vec, string& day, int& hour)
+void getDayHour(vector<string>& str_vec, int& day, int& hour)
 {
 	int len = (str_vec[0].size() < str_vec[1].size()) ? str_vec[0].size() : str_vec[1].size();
 	string& str1 = str_vec[0];
@@ -49,7 +49,7 @@ void getDayHour(vector<string>& str_vec, string& day, int& hour)
 			if (str1[i] == str2[i])
 			{
 				day_found_flag = true;
-				day = DAY[str1[i]-'A'];
+				day = str1[i]-'A';
 				continue;
 			}
 		}
@@ -57,7 +57,7 @@ void getDayHour(vector<string>& str_vec, string& day, int& hour)
 		{
 			if (str1[i] == str2[i])
 			{
-				if (str1[i] > 'A') // must be an Alpha
+				if (str1[i] >= 'A') // must be an Alpha
 				{
 					hour = str1[i] - 'A' + 10;
 				}
@@ -93,6 +93,21 @@ void getMin(vector<string>& str_vec, int& min)
 
 }
 
+void checkLegality(int& day, int& hour, int& min)
+{
+	if (min == 60)
+	{
+		min = 0;
+		hour += 1;
+	}
+	if (hour == 24)
+	{
+		hour == 0;
+		day += 1;
+	}
+	day = day % 7;
+}
+
 int main(int argc, char* argv[])
 {
 	vector<string> str_vec;
@@ -103,11 +118,13 @@ int main(int argc, char* argv[])
 		cin >> str_tmp;
 		str_vec.push_back(str_tmp);
 	}
-	string day;
+	int day;
 	int hour, min;
 	getDayHour(str_vec, day, hour);
 	getMin(str_vec, min);
-	cout << day << ' ';
+	checkLegality(day, hour, min);
+
+	cout << DAY[day] << ' ';
 	if (hour < 10)
 		cout << '0';
 	cout << hour << ':';
