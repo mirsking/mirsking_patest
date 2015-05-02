@@ -61,14 +61,16 @@ int main(int argc, char* argv[])
 	{
 		int id, morality, gift;
 		cin >> id >> morality >> gift;
-		vector<int> line_data;
-		line_data.clear();
-		line_data.push_back(id);
-		line_data.push_back(morality);
-		line_data.push_back(gift);
-		line_data.push_back(morality + gift);
+		
 		if (morality>=low_score && gift >= low_score)
 		{
+			vector<int> line_data;
+			line_data.clear();
+			line_data.push_back(id);
+			line_data.push_back(morality);
+			line_data.push_back(gift);
+			line_data.push_back(morality + gift);
+
 			if (morality >= high_score && gift >= high_score)
 			{
 				m_g_data.push_back(line_data);
