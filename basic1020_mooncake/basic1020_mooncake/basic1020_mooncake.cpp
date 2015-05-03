@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 	float already_sum = 0;
 	int index = 0;
 	float sum_price = 0;
-	while (already_sum + moon_cake[index][0] < need && index<moon_cake.size())
+	while (index<moon_cake.size() && already_sum + moon_cake[index][0] < need )
 	{
 		already_sum += moon_cake[index][0];
 		sum_price += moon_cake[index][0] * moon_cake[index][1];
@@ -49,8 +49,8 @@ int main(int argc, char* argv[])
 	if (index < moon_cake.size())
 	{
 		sum_price += (need - already_sum) * moon_cake[index][1];
-		printf("%.2f\n",sum_price);
 	}
+	printf("%.2f\n",sum_price);
 
 	return 0;
 }

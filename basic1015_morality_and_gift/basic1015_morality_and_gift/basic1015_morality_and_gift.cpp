@@ -12,37 +12,47 @@ typedef vector< vector<int> > data_t;
 
 bool sortSumDescend(const vector<int>& left_vec, const vector<int>& right_vec)
 {
-	if (left_vec[3] > right_vec[3])
-	{
-			return true;
-	}
-	else if (left_vec[3] == right_vec[3])
-	{
-		if (left_vec[1] > right_vec[1])
-		{
-			return true;
-		}
-		else if (left_vec[1] == right_vec[1])
-		{
-			return left_vec[0] < right_vec[0];
-		}
-		else
-		{
-			return false;
-		}
-	}
+	//if (left_vec[3] > right_vec[3])
+	//{
+	//		return true;
+	//}
+	//else if (left_vec[3] == right_vec[3])
+	//{
+	//	if (left_vec[1] > right_vec[1])
+	//	{
+	//		return true;
+	//	}
+	//	else if (left_vec[1] == right_vec[1])
+	//	{
+	//		return left_vec[0] < right_vec[0];
+	//	}
+	//	else
+	//	{
+	//		return false;
+	//	}
+	//}
+	//else
+	//{
+	//	return false;
+	//}
+	if (left_vec[3] != right_vec[3])
+		return left_vec[3] > right_vec[3];
 	else
 	{
-		return false;
+		if (left_vec[1] != right_vec[1])
+			return left_vec[1] > right_vec[1];
+		else
+			return left_vec[0] < right_vec[0];
 	}
 }
 
-void  output(data_t& vec)
+inline void  output(data_t& vec)
 {
 	for (auto iter = vec.begin(); iter != vec.end(); iter++)
 	{
-		auto tmp = *iter;
-		cout << tmp[0] << ' ' << tmp[1] << ' ' << tmp[2] << endl;
+		auto& tmp = *iter;
+		printf("%d %d %d\n", tmp[0],tmp[1],tmp[2]);
+	//	cout << tmp[0] << ' ' << tmp[1] << ' ' << tmp[2] << endl;
 	}
 }
 
@@ -50,7 +60,8 @@ void  output(data_t& vec)
 int main(int argc, char* argv[])
 {
 	int num, low_score, high_score;
-	cin >> num >> low_score >> high_score;
+	//cin >> num >> low_score >> high_score;
+	scanf("%d %d %d", &num, &low_score, &high_score);
 
 	data_t m_g_data;
 	data_t m_no_g_data;
@@ -60,11 +71,12 @@ int main(int argc, char* argv[])
 	for (int i = 0; i < num; i++)
 	{
 		int id, morality, gift;
-		cin >> id >> morality >> gift;
+		scanf("%d %d %d",&id, &morality, &gift);
+		//cin >> id >> morality >> gift;
+		vector<int> line_data;
 		
 		if (morality>=low_score && gift >= low_score)
 		{
-			vector<int> line_data;
 			line_data.clear();
 			line_data.push_back(id);
 			line_data.push_back(morality);
