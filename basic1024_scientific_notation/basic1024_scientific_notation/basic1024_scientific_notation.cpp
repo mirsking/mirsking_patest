@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	string num;
 	cin >> num;
 
-	float NUM = stof(num);
+	double NUM = stod(num);
 	int point_off, c;
 	auto iter = find(num.begin(), num.end(), 'E');
 	if ( iter != num.end())
@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 	if (point_off < 0)
 		point_off = 0;
 
-	printf("%.*f\n", point_off, NUM);
+	printf("%.*lf\n", point_off, NUM);
 	
 	return 0;
 }
