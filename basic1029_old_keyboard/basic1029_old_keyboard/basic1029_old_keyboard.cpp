@@ -5,6 +5,8 @@
 #include <string>
 #include <unordered_map>
 
+
+
 using namespace std;
 
 int main(int argc, char* argv[])
@@ -34,7 +36,6 @@ int main(int argc, char* argv[])
 			cout << tmp;
 			key_map[tmp] = true;
 		}
-
 	}
 
 	return 0;
